@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js Shader Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+<body>
+    <script>
+// Declare a shader variable
+let theShader;
+
+function preload() {
+    // Load the shaders; ensure you have vertex.glsl and fragment.glsl files in your project directory
+    theShader = loadShader('vertex.glsl', 'fragment.glsl');
+}
+
+function setup() {
+    // Create a canvas with WebGL context
+    createCanvas(windowWidth, windowHeight, WEBGL);
+
+    // No need for a stroke on the shapes
+    noStroke();
+}
+
+function draw() {
+    // Use the custom shader
+    shader(theShader);
+
+    // Render a quad (rectangle)
+    // The quad coordinates cover the entire canvas
+    // They are mapped from -1 to 1 in both X and Y directions
+    ellipse(0, 0, windowWidth, windowHeight, 100)
+}
+
+// Optional: Resize the canvas when the window is resized
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
+    </script>
+</body>
+</html>
